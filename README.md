@@ -4,7 +4,7 @@ is a demo project, based on currency transfer principles, to demonstrate some of
 
 ## Support materials
 
-To see more about some other materials that i´ve used to structure this iniciative, click the link bellow
+To see more about some other materials that i´ve used to structure this initiative, click the link bellow
 
 - Google Drive
 
