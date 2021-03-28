@@ -33,5 +33,20 @@ describe('Account service', () => {
             expect(sourceBalance).toBe(900)
             expect(targetBalance).toBe(0.01)
         })
+
+        it('Cannot trade beyond funds', async () => { 
+            const promise = TraderService.trade({
+                sourceAccount,
+                targetAccount,
+                value: 100000,
+            })
+
+            await expect(promise).rejects.toThrowError()
+
+            const sourceBalance = await StatementStore.getAccountsBalance(sourceAccount.id!) 
+            const targetBalance = await StatementStore.getAccountsBalance(targetAccount.id!) 
+            expect(sourceBalance).toBe(1000)
+            expect(targetBalance).toBe(0)
+        })
     })
 })
