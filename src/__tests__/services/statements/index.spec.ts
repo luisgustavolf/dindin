@@ -7,7 +7,7 @@ let account: Account;
 
 beforeEach(async () => {
     await resetDb()
-    account = await AccountStore.save({ name: 'reais', slug: 'reais' })
+    account = await AccountStore.save({ name: 'reais', currency: 'reais' })
 })
 
 describe('Statement service', () => {

@@ -1,5 +1,5 @@
 export interface Account {
     id?: number,
-    slug: string,
+    currency: string,
     name: string
 }

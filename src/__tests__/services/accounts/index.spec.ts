@@ -1,5 +1,7 @@
 import { AccountService } from "../../../services/account"
+import { Account } from "../../../storage/stores/accounts/account"
 import { resetDb } from "../../../storage/db"
+import { EnumCurrency } from "../../../storage/stores/accounts/enumCurrency"
 
 beforeEach(async () => {
     await resetDb()
@@ -8,7 +10,7 @@ beforeEach(async () => {
 describe('Account service', () => {
     describe('validations', () => {
         it ('must have a name', async () => {
-            const promise = AccountService.add({ slug: 'reais' })
+            const promise = AccountService.add({ currency: 'reais' })
             await expect(promise).rejects.toThrowError()
         })
 
@@ -19,14 +21,14 @@ describe('Account service', () => {
     })
     
     it ('can add accounts', async () => {
-        const data = { name: 'Reais', slug: 'reais' }
+        const data: Account = { name: 'Reais', currency: EnumCurrency.BRL }
         const promise = AccountService.add(data)
         await expect(promise).resolves.toEqual({ id: 1, ...data })
     })
 
     it ('can list accounts', async () => {
-        await AccountService.add({ name: 'Reais', slug: 'reais' })
-        await AccountService.add({ name: 'Bitcoins', slug: 'bitcoins'})
+        await AccountService.add({ name: 'Reais', currency: EnumCurrency.BRL })
+        await AccountService.add({ name: 'Bitcoins', currency: EnumCurrency.BTC})
         const accounts = await AccountService.getAll()
         expect(accounts).toHaveLength(2)
     })    

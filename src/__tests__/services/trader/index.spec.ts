@@ -8,13 +8,13 @@ let targetAccount: Account;
 
 beforeEach(async () => {
     await resetDb()
-    sourceAccount = await AccountStore.save({ name: 'reais', slug: 'reais' })
-    targetAccount = await AccountStore.save({ name: 'bitcoins', slug: 'bitcoins' })
+    sourceAccount = await AccountStore.save({ name: 'reais', currency: 'reais' })
+    targetAccount = await AccountStore.save({ name: 'bitcoins', currency: 'bitcoins' })
 })
 
 describe('Account service', () => {
     describe('validations', () => {
-        it('Can trade a currency for another', () => { 
+        it('Can trade between accounts', () => { 
             TraderService.trade({
                 sourceAccount,
                 targetAccount,
