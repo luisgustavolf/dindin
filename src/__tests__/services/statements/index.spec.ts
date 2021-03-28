@@ -10,7 +10,7 @@ beforeEach(async () => {
     account = await AccountStore.save({ name: 'reais', slug: 'reais' })
 })
 
-describe('Account service', () => {
+describe('Statement service', () => {
     describe('validations', () => {
         it('can save', async () => {
             const data = { accountId: account.id, description: 'desc', value: 12 }
