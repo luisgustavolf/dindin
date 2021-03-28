@@ -10,7 +10,7 @@ beforeEach(async () => {
 describe('Account service', () => {
     describe('validations', () => {
         it ('must have a name', async () => {
-            const promise = AccountStore.save({ currency: 'reais' })
+            const promise = AccountStore.save({ currency: EnumCurrency.BRL })
             await expect(promise).rejects.toThrowError()
         })
 

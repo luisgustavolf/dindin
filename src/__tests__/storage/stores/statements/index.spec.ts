@@ -2,12 +2,13 @@ import { Account } from "../../../../storage/stores/accounts/account"
 import { resetDb } from "../../../../storage/db"
 import { AccountStore } from "../../../../storage/stores/accounts";
 import { StatementStore } from "../../../../storage/stores/statements";
+import { EnumCurrency } from "../../../../storage/stores/accounts/enumCurrency";
 
 let account: Account;
 
 beforeEach(async () => {
     await resetDb()
-    account = await AccountStore.save({ name: 'reais', currency: 'reais' })
+    account = await AccountStore.save({ name: 'reais', currency: EnumCurrency.BRL })
 })
 
 describe('Statement service', () => {

@@ -1,5 +1,7 @@
+import { EnumCurrency } from "./enumCurrency";
+
 export interface Account {
     id?: number,
-    currency: string,
+    currency: EnumCurrency,
     name: string
 }
