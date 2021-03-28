@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 export interface WalletProps {
-    
+    accountId: number
 }
 
 export function Wallet(props:WalletProps) {

@@ -1,12 +1,13 @@
 import { Container } from '@material-ui/core'
 import * as React from 'react'
 import { RouteChildrenProps } from 'react-router-dom'
-import { WalletBase } from '../../components/others/wallet/walletBase'
-import { EnumCurrency } from '../../storage/stores/accounts/enumCurrency'
-
+import { Wallet } from '../../components/others/wallet'
+import { useHomePage } from './hook'
 import './styles.scss'
 
 export function HomePage(props: RouteChildrenProps) {
+
+    const { accounts } = useHomePage({})
 
     // ---------------------------------------------
     // Transformations
@@ -14,14 +15,17 @@ export function HomePage(props: RouteChildrenProps) {
     // Render
 
     return (
-        <Container maxWidth="lg" style={{height: '100vh'}} >
-            <WalletBase 
-                title={'Reais'}
-                balance={1000}
-                currency={EnumCurrency.BRL}
-                onStatements={() => {}}
-                onTransfer={() => {}}
-            />
+        <Container 
+            maxWidth={"lg"}
+            className={'dd-home-page'}
+            style={{height: '100vh'}} 
+        >
+            {accounts?.map((account, idx) => 
+                <Wallet 
+                    key={idx} 
+                    accountId={account.id!} 
+                />
+            )}
         </Container>
     )
 }
