@@ -19,8 +19,9 @@ describe('Account service', () => {
     })
     
     it ('can add accounts', async () => {
-        const promise = AccountService.add({ name: 'Reais', slug: 'reais' })
-        await expect(promise).resolves.toBe(1)
+        const data = { name: 'Reais', slug: 'reais' }
+        const promise = AccountService.add(data)
+        await expect(promise).resolves.toEqual({ id: 1, ...data })
     })
 
     it ('can list accounts', async () => {

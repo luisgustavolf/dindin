@@ -1,19 +1,14 @@
 import { DBSchema } from "idb";
+import { Statement } from "./stores/statements/statement";
+import { Account } from "./stores/accounts/account";
 
 export interface DindinDbSchema extends DBSchema {
     accounts: {
         key: number;
-        value: {
-            name: string
-        }
+        value: Account
     };
     statements: {
-        value: {
-            description: string;
-            value: number;
-            accountId: number;
-            createdAt: string;
-        };
+        value: Statement
         key: number;
         indexes: { 'by-account': number };
     };

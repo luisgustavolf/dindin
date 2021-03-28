@@ -11,7 +11,8 @@ async function save(item: Partial<Account>) {
     if (!item.slug)
       throw new Error('Account slug name cannot be blank')
 
-    return await connection.add('accounts', { name: item.name! })
+    const id = await connection.add('accounts', item as Required<Account>)
+    return await getStore().get(id) as Account
 }
 
 async function getAll() {
