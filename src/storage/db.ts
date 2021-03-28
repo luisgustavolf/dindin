@@ -1,4 +1,4 @@
-import { IDBPDatabase, openDB } from 'idb';
+import { deleteDB, IDBPDatabase, openDB } from 'idb';
 import { DindinDbSchema } from './schema';
 
 export let connection: IDBPDatabase<DindinDbSchema>;
@@ -16,4 +16,13 @@ async function connectAndSetupDb() {
       statements.createIndex('by-account', 'accountId');
     },
   });
+}
+
+export async function resetDb() {
+  if (connection) {
+    connection.close()
+    await deleteDB('dindin-store')
+  }
+  
+  await connect()
 }
