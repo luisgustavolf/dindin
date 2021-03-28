@@ -12,41 +12,39 @@ beforeEach(async () => {
     await resetDb()
     sourceAccount = await AccountStore.save({ name: 'reais', currency: EnumCurrency.BRL })
     targetAccount = await AccountStore.save({ name: 'bitcoins', currency: EnumCurrency.BTC })
-    await StatementStore.add({ 
+    await StatementStore.add({
         accountId: sourceAccount.id,
         description: 'initial deposit',
         value: 1000
     })
 })
 
-describe('Account service', () => {
-    describe('validations', () => {
-        it('Can trade between accounts', async () => { 
-            await TraderService.trade({
-                sourceAccount,
-                targetAccount,
-                value: 100,
-            })
+async function expectedAccountsBalances(source: number, target: number) {
+    const sourceBalance = await StatementStore.getAccountsBalance(sourceAccount.id!)
+    const targetBalance = await StatementStore.getAccountsBalance(targetAccount.id!)
+    expect(sourceBalance).toBe(source)
+    expect(targetBalance).toBe(target)
+}
 
-            const sourceBalance = await StatementStore.getAccountsBalance(sourceAccount.id!) 
-            const targetBalance = await StatementStore.getAccountsBalance(targetAccount.id!) 
-            expect(sourceBalance).toBe(900)
-            expect(targetBalance).toBe(0.01)
+describe('Trader service', () => {
+    it('Can trade between accounts', async () => {
+        await TraderService.trade({
+            sourceAccount,
+            targetAccount,
+            value: 100,
         })
 
-        it('Cannot trade beyond funds', async () => { 
-            const promise = TraderService.trade({
-                sourceAccount,
-                targetAccount,
-                value: 100000,
-            })
+        await expectedAccountsBalances(900, 0.01)
+    })
 
-            await expect(promise).rejects.toThrowError()
-
-            const sourceBalance = await StatementStore.getAccountsBalance(sourceAccount.id!) 
-            const targetBalance = await StatementStore.getAccountsBalance(targetAccount.id!) 
-            expect(sourceBalance).toBe(1000)
-            expect(targetBalance).toBe(0)
+    it('Cannot trade beyond funds', async () => {
+        const promise = TraderService.trade({
+            sourceAccount,
+            targetAccount,
+            value: 100000,
         })
+
+        await expect(promise).rejects.toThrowError()
+        await expectedAccountsBalances(1000, 0)
     })
 })
