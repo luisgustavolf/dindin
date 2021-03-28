@@ -15,22 +15,27 @@ describe('Statement service', () => {
     describe('validations', () => {
         it('can save', async () => {
             const data = { accountId: account.id, description: 'desc', value: 12 }
-            const promise = StatementStore.save(data)
+            const promise = StatementStore.add(data)
             await expect(promise).resolves.toEqual({ id: 1, ...data })
         })
 
         it('must be related to an account', async () => {
-            const promise = StatementStore.save({ description: 'desc', value: 12 })
+            const promise = StatementStore.add({ description: 'desc', value: 12 })
             await expect(promise).rejects.toThrowError()
         })
 
         it('must have a description', async () => {
-            const promise = StatementStore.save({ accountId: account.id, value: 12 })
+            const promise = StatementStore.add({ accountId: account.id, value: 12 })
             await expect(promise).rejects.toThrowError()
         })
 
         it('must have a value', async () => {
-            const promise = StatementStore.save({ accountId: account.id, description: 'desc' })
+            const promise = StatementStore.add({ accountId: account.id, description: 'desc' })
+            await expect(promise).rejects.toThrowError()
+        })
+
+        it('cannot withdraw if do not have funds', async () => {
+            const promise = StatementStore.add({ accountId: account.id, description: 'desc', value: -10 })
             await expect(promise).rejects.toThrowError()
         })
     })
