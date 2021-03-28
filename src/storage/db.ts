@@ -11,8 +11,8 @@ export async function connect() {
 async function connectAndSetupDb() {
   return await openDB<DindinDbSchema>('dindin-store', 1, {
     upgrade(db) {
-      db.createObjectStore('accounts', { autoIncrement: true });
-      const statements = db.createObjectStore('statements', { autoIncrement: true });
+      db.createObjectStore('accounts', { keyPath: "id", autoIncrement: true });
+      const statements = db.createObjectStore('statements', { keyPath: "id", autoIncrement: true });
       statements.createIndex('by-account', 'accountId');
     },
   });

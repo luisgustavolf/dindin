@@ -1,5 +1,5 @@
-import { AccountStore } from "../../storage/stores/account"
-import { Account } from '../../storage/stores/account/account'
+import { AccountStore } from "../../storage/stores/accounts"
+import { Account } from '../../storage/stores/accounts/account'
 
 async function add(account: Partial<Account>) {
     return await AccountStore.save(account)
