@@ -1,5 +1,4 @@
 import { AccountService } from "../../../services/account";
-import { CurrencyService } from "../../../services/currency";
 import { resetDb } from "../../../storage/db";
 import { AccountStore } from "../../../storage/stores/accounts";
 import { Account } from "../../../storage/stores/accounts/account";
