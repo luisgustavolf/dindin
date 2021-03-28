@@ -10,8 +10,8 @@ let targetAccount: Account;
 
 beforeEach(async () => {
     await resetDb()
-    sourceAccount = await AccountStore.save({ name: 'reais', currency: EnumCurrency.BRL })
-    targetAccount = await AccountStore.save({ name: 'bitcoins', currency: EnumCurrency.BTC })
+    sourceAccount = await AccountStore.add({ name: 'reais', currency: EnumCurrency.BRL })
+    targetAccount = await AccountStore.add({ name: 'bitcoins', currency: EnumCurrency.BTC })
     await StatementStore.add({
         accountId: sourceAccount.id,
         description: 'initial deposit',

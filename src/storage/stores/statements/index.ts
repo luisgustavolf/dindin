@@ -1,9 +1,18 @@
 import { connection } from '../../db';
-import { Statement } from './statement'
-import { Account } from './../accounts/account'
+import { Statement } from './statement';
 
 function getStore() {
   return connection.transaction('statements').objectStore('statements')
+}
+
+async function getAll() {
+  const store = getStore()
+  return await store.getAll()
+}
+
+async function get(id: number) {
+  const store = getStore()
+  return await store.get(id)
 }
 
 async function add(statement: Partial<Statement>) {
@@ -25,11 +34,6 @@ async function add(statement: Partial<Statement>) {
     return await getStore().get(id) as Statement
 }
 
-async function getAll() {
-    const store = getStore()
-    return await store.getAll()
-}
-
 async function getAccountsStatements(accountId: number) {
   return await connection.getAllFromIndex('statements', 'by-account', accountId);
 }
@@ -41,6 +45,7 @@ async function getAccountsBalance(accountId: number) {
 
 export const StatementStore = {
     add,
+    get,
     getAll,
     getAccountsBalance,
     getAccountsStatements
