@@ -6,7 +6,6 @@ import { useHomePage } from './hook'
 import './styles.scss'
 
 export function HomePage(props: RouteChildrenProps) {
-
     const { accounts } = useHomePage({})
 
     // ---------------------------------------------
@@ -20,7 +19,7 @@ export function HomePage(props: RouteChildrenProps) {
             className={'dd-home-page'}
             style={{height: '100vh'}} 
         >
-            {accounts?.map((account, idx) => 
+            {(accounts || []).map((account, idx) => 
                 <AccountSummary 
                     key={idx} 
                     accountId={account.id!} 

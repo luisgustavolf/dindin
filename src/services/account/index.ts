@@ -1,12 +1,24 @@
 import { AccountStore } from "../../storage/stores/accounts"
 import { StatementStore } from "../../storage/stores/statements"
+import { AccountWithBalance } from "./types";
 
 async function getAll() {
     return await AccountStore.getAll()
 }
 
-async function getAllWithBallances() {
-    return await AccountStore.getAll()
+async function getAllWithBalances() {
+    const accountsWithBalances: AccountWithBalance[] = [];
+    const accounts = await AccountStore.getAll();
+    
+    for (const account of accounts) {
+        const balance = await getAccountBalance(account.id!);
+        accountsWithBalances.push({
+            ...account,
+            balance
+        })
+    }
+
+    return accountsWithBalances
 }
 
 async function get(id: number) {
@@ -24,7 +36,7 @@ async function getAccountBalance(accountId: number) {
 export const AccountService = {
     get,
     getAll,
-    getAllWithBallances,
+    getAllWithBalances,
     getAccountsStatements,
     getAccountBalance
 }

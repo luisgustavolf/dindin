@@ -14,11 +14,18 @@ export function useAccountsBalancesProvider(props:UseAccountsBalancesProviderPro
     // Functions
 
     const update = React.useCallback(async () => {
-        const list = await AccountService.getAll();
+        setLoading(true)
+        setAccounts(await AccountService.getAllWithBalances());
+        setLoading(false)
     }, [])
 
     // ---------------------------------------------
     // Effects
+
+    React.useEffect(() => {
+        update()
+    },[update])
+
     // ---------------------------------------------
     // Transformations
     // ---------------------------------------------
