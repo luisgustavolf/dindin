@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter } from "react-router-dom";
-import { AccountsBalancesProvider } from './contexts/accountsBalances/accountsBalancesProvider';
+import { AccountsBalancesProvider } from './contexts/accountsBalances/provider';
 import { Routes } from "./pages/routes";
 
 import './assets/styles/index.scss';

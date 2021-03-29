@@ -2,11 +2,9 @@ import * as React from 'react'
 import { AccountService } from '../../services/account'
 import { AccountWithBalance } from '../../services/account/types'
 
-export interface UseAccountsBalancesProviderProps {
-    
-}
+export interface UseAccountsBalancesProviderProps { }
 
-export function useAccountsBalancesProvider(props:UseAccountsBalancesProviderProps) {
+export function useAccountsBalancesProvider(props: UseAccountsBalancesProviderProps) {
     const [loading, setLoading] = React.useState(false)
     const [accounts, setAccounts] = React.useState<AccountWithBalance[]>()
 

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { AccountSummaryBase } from './accountSummaryBase'
+import { useAccountSummary } from './hook'
 
 export interface AccountSummaryProps {
     accountId: number
@@ -9,6 +10,8 @@ export interface AccountSummaryProps {
 
 export function AccountSummary(props:AccountSummaryProps) {
 
+    const { loading, name, currency, balance } = useAccountSummary(props)
+
     // ---------------------------------------------
     // Transformations
     // ---------------------------------------------
@@ -16,6 +19,10 @@ export function AccountSummary(props:AccountSummaryProps) {
 
     return (
         <AccountSummaryBase
+            loading={loading}
+            title={name}
+            balance={balance}
+            currency={currency}
             onStatements={() => {}}
             onTransfer={() => {}}
         />
