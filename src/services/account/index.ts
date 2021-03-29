@@ -5,6 +5,10 @@ async function getAll() {
     return await AccountStore.getAll()
 }
 
+async function getAllWithBallances() {
+    return await AccountStore.getAll()
+}
+
 async function get(id: number) {
     return await AccountStore.get(id)
 }
@@ -20,6 +24,7 @@ async function getAccountBalance(accountId: number) {
 export const AccountService = {
     get,
     getAll,
+    getAllWithBallances,
     getAccountsStatements,
     getAccountBalance
 }

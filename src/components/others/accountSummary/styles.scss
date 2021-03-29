@@ -1,0 +1,35 @@
+.dd-account-summary {
+    position: relative;
+    margin-top: 20px;
+
+    .title-wrap {
+        position: absolute;
+        margin-top: -10px;
+        
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .title {
+            font-size: 14px;
+            padding: 5px 15px;
+            background: #f1f1f1;
+            border-radius: 4px;
+            box-shadow: 1px 1px 2px #ccc;
+        }
+    }
+
+    .balance {
+        padding: 40px 20px 20px 20px;
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .footer {
+        & > * {
+            display: block;
+            width: 100%;
+        }
+    }
+}
