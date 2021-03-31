@@ -6,7 +6,7 @@ is a demo project, based on currency transfer principles, to demonstrate some of
 
 To see more about some other materials that i´ve used to structure this initiative, click the link bellow
 
-- Google Drive
+- [Google Drive](https://drive.google.com/drive/folders/1Yumh5UOabgC5tjoQJcsVXJdP4GrsAosb?usp=sharing)
 
 ## Main objectives
 
@@ -16,9 +16,19 @@ To see more about some other materials that i´ve used to structure this initiat
 
 ## Using this project
 
+### Small issues
+
+- Project may contain some minor issues
+
 ### Prerequisites 
 - node v12.x (or higher)
 - yarn 1.22 (or higher)
+
+### Installation
+
+```bash
+yarn
+```
 
 ### Tests
 
