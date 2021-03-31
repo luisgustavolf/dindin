@@ -1,9 +1,10 @@
 import * as React from 'react'
+import { AccountWithBalance } from '../../../services/account/types'
 import { AccountSummaryBase } from './accountSummaryBase'
 import { useAccountSummary } from './hook'
 
 export interface AccountSummaryProps {
-    accountId: number
+    account: AccountWithBalance
     size?: 'regular' | 'small'
     children?: any
 }

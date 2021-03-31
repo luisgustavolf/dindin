@@ -1,15 +1,16 @@
 import Button from '@material-ui/core/Button';
 import PlayForWorkIcon from '@material-ui/icons/PlayForWork';
 import * as React from 'react';
+import { AccountWithBalance } from '../../../services/account/types';
 import { AccountSummary, AccountSummaryProps } from '../accountSummary';
 
 import './styles.scss';
 
 export interface AccountSummaryWithTargetingProps extends AccountSummaryProps {
     displayTransferTarget?: boolean
-    onTransfer: (accountId: number) => void
-    onStatement: (accountId: number) => void
-    onTargetSelected: (accountId: number) => void
+    onTransfer: (account: AccountWithBalance) => void
+    onStatement: (account: AccountWithBalance) => void
+    onTargetSelected: (account: AccountWithBalance) => void
 }
 
 export function AccountSummaryWithTargeting(props: AccountSummaryWithTargetingProps) {
@@ -22,8 +23,8 @@ export function AccountSummaryWithTargeting(props: AccountSummaryWithTargetingPr
     return (
         <div className={'dd-targeting-wrap'}>
             <AccountSummary {...props}>
-                <Button color="primary" onClick={() => props.onTransfer(props.accountId)}>Transferir</Button>
-                <Button onClick={() => props.onStatement(props.accountId)}>Extrato</Button>
+                <Button color="primary" onClick={() => props.onTransfer(props.account)}>Transferir</Button>
+                <Button onClick={() => props.onStatement(props.account)}>Extrato</Button>
             </AccountSummary>
 
             {props.displayTransferTarget &&
@@ -36,7 +37,7 @@ export function AccountSummaryWithTargeting(props: AccountSummaryWithTargetingPr
                                 color="primary"
                                 size={'large'}
                                 startIcon={<PlayForWorkIcon fontSize={'large'} />}
-                                onClick={() => props.onTargetSelected(props.accountId)}
+                                onClick={() => props.onTargetSelected(props.account)}
                             >
                                 Para cá
                             </Button>

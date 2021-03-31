@@ -7,7 +7,7 @@ import './styles.scss'
 import { TransferDialog } from './transferDialog'
 
 export function HomePage(props: RouteChildrenProps) {
-    const { context, targetHook } = useHomePage({})
+    const { context, transferTarget, transferDialog } = useHomePage({})
 
     // ---------------------------------------------
     // Transformations
@@ -23,18 +23,18 @@ export function HomePage(props: RouteChildrenProps) {
             {(context.accounts || []).map((account, idx) => 
                 <AccountSummaryWithTargeting 
                     key={idx} 
-                    accountId={account.id!} 
-                    displayTransferTarget={targetHook.isTarget(account.id!)}
+                    account={account} 
+                    displayTransferTarget={transferTarget.isTarget(account)}
                     onStatement={() => {}}
-                    onTransfer={targetHook.setSourceAccountId}
-                    onTargetSelected={() => targetHook.setSourceAccountId(undefined)}
+                    onTransfer={transferTarget.setSourceAccount}
+                    onTargetSelected={() => transferTarget.setSourceAccount(undefined)}
                 />
             )}
 
             <TransferDialog 
-                sourceAccountId={1}
-                targetAccountId={2}
-                open={true}
+                sourceAccount={transferTarget.sourceAccount}
+                targetAccount={transferTarget.targetAccount}
+                open={transferDialog.open}
                 onOk={() => {}}
                 onCancel={() => {}}
             />
