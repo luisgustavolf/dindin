@@ -6,7 +6,7 @@ import { useHomePage } from './hook'
 import './styles.scss'
 
 export function HomePage(props: RouteChildrenProps) {
-    const { accounts } = useHomePage({})
+    const { context, targetHook } = useHomePage({})
 
     // ---------------------------------------------
     // Transformations
@@ -19,15 +19,18 @@ export function HomePage(props: RouteChildrenProps) {
             className={'dd-home-page'}
             style={{height: '100vh'}} 
         >
-            {(accounts || []).map((account, idx) => 
+            {(context.accounts || []).map((account, idx) => 
                 <AccountSummaryWithTargeting 
                     key={idx} 
                     accountId={account.id!} 
+                    displayTransferTarget={targetHook.isTarget(account.id!)}
                     onStatement={() => {}}
-                    onTransfer={() => {}}
-                    onTargetSelected={() => {}}
+                    onTransfer={targetHook.setSourceAccountId}
+                    onTargetSelected={() => targetHook.setSourceAccountId(undefined)}
                 />
             )}
+
+            
         </Container>
     )
 }
