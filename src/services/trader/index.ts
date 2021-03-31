@@ -1,6 +1,7 @@
 import { Account } from '../../storage/stores/accounts/account'
 import { StatementStore } from '../../storage/stores/statements'
 import { CurrencyService } from '../currency'
+import { currencyExchangeIndexes } from '../currency/currencyExchangeIndexes'
 
 async function trade(props: {
     sourceAccount: Account
@@ -9,12 +10,15 @@ async function trade(props: {
 }) {
     await CurrencyService.updateCurrencyExchangeIndexes()
     
+
     const equivalentValue = CurrencyService.calculateEquivalentValue({
         sourceCurrency: props.sourceAccount.currency,
         targetCurrency: props.targetAccount.currency,
         value: props.value
     })
     
+    console.log(currencyExchangeIndexes, props.value, equivalentValue)
+
     // withdraw
     await StatementStore.add({ 
         accountId: props.sourceAccount.id,

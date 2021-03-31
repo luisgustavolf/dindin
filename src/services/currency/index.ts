@@ -4,8 +4,12 @@ import { getBitcoinValue } from "./updaters/bitcoin";
 import { getBritasValue } from "./updaters/britas";
 
 async function updateCurrencyExchangeIndexes() {
+    const BRI = await getBritasValue();
+        
+    currencyExchangeIndexes[EnumCurrency.BRL] = 1
+    currencyExchangeIndexes[EnumCurrency.USD] = BRI
+    currencyExchangeIndexes[EnumCurrency.BRI] = BRI
     currencyExchangeIndexes[EnumCurrency.BTC] = await getBitcoinValue()
-    currencyExchangeIndexes[EnumCurrency.BRL] = 1 / (await getBritasValue())
 }
 
 function calculateEquivalentValue(props: { sourceCurrency: EnumCurrency, targetCurrency: EnumCurrency, value: number }) {
