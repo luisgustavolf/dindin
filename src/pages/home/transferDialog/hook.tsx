@@ -1,6 +1,6 @@
-import { TraderService } from '../../../services/trader'
 import { useAccounts } from './useAccounts'
 import { useDialogForm } from './useDialogForm'
+import { useTransferService } from './useTransferService'
 
 export interface UseTransferDialogProps {
     sourceAccountId: number
@@ -16,15 +16,17 @@ export function useTransferDialog(props:UseTransferDialogProps) {
         sourceAccountId
     })
 
+    const service = useTransferService({
+        onTrade: props.onTransfer
+    })
+
     const form = useDialogForm({
-        onSubmit: async (values) => {
-            await TraderService.trade({
+        onSubmit: (values) => {
+            service.trade({
                 sourceAccount: accounts.sourceAccount!,
                 targetAccount: accounts.targetAccount!,
                 value: values.amount
             })
-
-            props.onTransfer()
         }
     })
 
@@ -39,6 +41,7 @@ export function useTransferDialog(props:UseTransferDialogProps) {
     
     return {
         accounts,
-        form 
+        form,
+        service
     }
 }
