@@ -1,7 +1,6 @@
 import { Account } from '../../storage/stores/accounts/account'
 import { StatementStore } from '../../storage/stores/statements'
 import { CurrencyService } from '../currency'
-import { currencyExchangeIndexes } from '../currency/currencyExchangeIndexes'
 
 async function trade(props: {
     sourceAccount: Account
