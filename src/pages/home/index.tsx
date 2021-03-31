@@ -9,7 +9,7 @@ import './styles.scss'
 import { StatementsDialog } from './statementsDialog'
 
 export function HomePage(props: RouteChildrenProps) {
-    const { context, transferTarget, openDialog, backToBegin } = useHomePage({})
+    const { context, transferTarget, transferDialog, statementDialog, backToBegin } = useHomePage({})
 
     // ---------------------------------------------
     // Transformations
@@ -28,7 +28,7 @@ export function HomePage(props: RouteChildrenProps) {
                         key={idx}
                         account={account}
                         displayTransferTarget={transferTarget.isTarget(account)}
-                        onStatement={() => { }}
+                        onStatement={statementDialog.open}
                         onTransfer={transferTarget.setSourceAccount}
                         onTargetSelected={transferTarget.setTargetAccount}
                     />
@@ -38,15 +38,15 @@ export function HomePage(props: RouteChildrenProps) {
             <TransferDialog
                 sourceAccount={transferTarget.sourceAccount}
                 targetAccount={transferTarget.targetAccount}
-                open={openDialog}
+                open={transferDialog.isOpen}
                 onOk={() => backToBegin(true)}
                 onCancel={() => backToBegin(false)}
             />
 
             <StatementsDialog
-                account={{id: 1} as any}
-                open={true}
-                onClose={() => {}}
+                account={statementDialog.account}
+                open={statementDialog.isOpen}
+                onClose={statementDialog.close}
             />
         </React.Fragment>
 

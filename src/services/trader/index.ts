@@ -17,8 +17,6 @@ async function trade(props: {
         value: props.value
     })
     
-    console.log(currencyExchangeIndexes, props.value, equivalentValue)
-
     // withdraw
     await StatementStore.add({ 
         accountId: props.sourceAccount.id,

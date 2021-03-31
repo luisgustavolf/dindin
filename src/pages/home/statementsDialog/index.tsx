@@ -4,12 +4,12 @@ import { Account } from '../../../storage/stores/accounts/account'
 import { useStatementDialog } from './hook'
 
 export interface StatementsDialogProps {
-    account: Account
+    account?: Account
     open: boolean
     onClose: () => void
 }
 
-export function StatementsDialog(props:StatementsDialogProps) {
+export function StatementsDialog(props: StatementsDialogProps) {
 
     const { loading, statements } = useStatementDialog(props)
 
@@ -20,27 +20,31 @@ export function StatementsDialog(props:StatementsDialogProps) {
 
     return (
         <Dialog
-            open={true}
+            open={props.open}
         >
             <DialogTitle>
                 Statements
             </DialogTitle>
             <DialogContent>
                 {loading && <CircularProgress />}
-                {!loading && 
+                {!loading &&
                     <table>
-                        <tr>
-                            <th>When</th>
-                            <th>Description</th>
-                            <th>Value</th>
-                        </tr>
-                        {statements?.map((statement, idx) => (
-                            <tr key={idx}>
-                                <td>{new Date(statement.createdAt).toLocaleDateString()}</td>
-                                <td>{statement.description}</td>
-                                <td>{statement.value}</td>
+                        <thead>
+                            <tr>
+                                <th>When</th>
+                                <th>Description</th>
+                                <th>Value</th>
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {statements?.map((statement, idx) => (
+                                <tr key={idx}>
+                                    <td>{new Date(statement.createdAt).toLocaleDateString()}</td>
+                                    <td>{statement.description}</td>
+                                    <td>{statement.value}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 }
             </DialogContent>
