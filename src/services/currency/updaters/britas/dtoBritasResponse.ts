@@ -1,12 +1,8 @@
 export interface DtoBritasResponse {
-    ticker: {
-        high: string,
-        low: string,
-        vol: string,
-        last: string,
-        buy: string,
-        sell: string,
-        open: string,
-        date: number
-    }
+    "@odata.context": string
+    value: {
+        cotacaoCompra: number,
+        cotacaoVenda: number,
+        dataHoraCotacao: string
+    }[]
 }
