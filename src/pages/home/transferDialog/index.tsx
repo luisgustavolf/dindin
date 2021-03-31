@@ -15,6 +15,7 @@ export interface TransferDialogProps {
 export function TransferDialog(props: TransferDialogProps) {
     const { open, sourceAccount, targetAccount } = props
     const { form } = useTransferDialog({ 
+        open,
         targetAccount,
         sourceAccount,
         onTransfer: props.onOk

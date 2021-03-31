@@ -23,6 +23,11 @@ export function useDialogForm(props:UseDialogFormProps) {
             onSubmitRef.current(values)
     }, [values])
 
+    const reset = React.useCallback(() => {
+        setValues({ amount: 0})
+        setErrors(undefined)
+    }, [])
+
     // ---------------------------------------------
     // Effects
     // ---------------------------------------------
@@ -34,6 +39,7 @@ export function useDialogForm(props:UseDialogFormProps) {
         values, 
         errors,
         setValues,
-        validate
+        validate,
+        reset
     }
 }

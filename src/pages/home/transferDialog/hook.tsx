@@ -1,15 +1,17 @@
+import { useEffect } from 'react'
 import { Account } from '../../../storage/stores/accounts/account'
 import { useDialogForm } from './useDialogForm'
 import { useTransferService } from './useTransferService'
 
 export interface UseTransferDialogProps {
+    open: boolean
     sourceAccount?: Account
     targetAccount?: Account
     onTransfer: () => void
 }
 
 export function useTransferDialog(props:UseTransferDialogProps) {
-    const {  sourceAccount, targetAccount } = props
+    const { sourceAccount, targetAccount, open } = props
     
     const service = useTransferService({
         onTrade: props.onTransfer
@@ -29,6 +31,13 @@ export function useTransferDialog(props:UseTransferDialogProps) {
     // Functions
     // ---------------------------------------------
     // Effects
+
+    const { reset } = form
+    
+    useEffect(() => {
+        reset()
+    } , [open, reset])
+
     // ---------------------------------------------
     // Transformations
     // ---------------------------------------------
