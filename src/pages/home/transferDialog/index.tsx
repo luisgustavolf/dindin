@@ -13,9 +13,10 @@ export interface TransferDialogProps {
 
 export function TransferDialog(props: TransferDialogProps) {
     const { open, sourceAccountId, targetAccountId } = props
-    const { accounts } = useTransferDialog({ 
+    const { accounts, form } = useTransferDialog({ 
         targetAccountId,
-        sourceAccountId
+        sourceAccountId,
+        onTransfer: props.onOk
     })
     
     // ---------------------------------------------
@@ -49,15 +50,17 @@ export function TransferDialog(props: TransferDialogProps) {
                 <TextField
                     style={{marginTop: 20}}
                     label="Valor à transferir"
-                    value={0}
+                    value={form.values.amount}
+                    onChange={(evt) => {form.setValues({ amount: parseFloat(evt.target.value) })}}
                     variant="outlined"
-                    helperText={`0 ${accounts.targetAccount?.currency}`}
+                    error={!!form.errors?.amount}
+                    helperText={form.errors?.amount}
                     fullWidth
                 />
 
             </DialogContent>
             <DialogActions >
-                <Button onClick={props.onOk} color="primary">
+                <Button onClick={form.validate} color="primary">
                     Transferir
                 </Button>
                 <Button onClick={props.onCancel}>
