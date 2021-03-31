@@ -23,8 +23,8 @@ export function AccountSummaryWithTargeting(props: AccountSummaryWithTargetingPr
     return (
         <div className={'dd-targeting-wrap'}>
             <AccountSummary {...props}>
-                <Button color="primary" onClick={() => props.onTransfer(props.account)}>Transferir</Button>
-                <Button onClick={() => props.onStatement(props.account)}>Extrato</Button>
+                <Button color="primary" onClick={() => props.onTransfer(props.account)}>Transfer</Button>
+                <Button onClick={() => props.onStatement(props.account)}>Statements</Button>
             </AccountSummary>
 
             {props.displayTransferTarget &&
@@ -39,7 +39,7 @@ export function AccountSummaryWithTargeting(props: AccountSummaryWithTargetingPr
                                 startIcon={<PlayForWorkIcon fontSize={'large'} />}
                                 onClick={() => props.onTargetSelected(props.account)}
                             >
-                                Para cá
+                                Here
                             </Button>
                         </div>
                     </div>

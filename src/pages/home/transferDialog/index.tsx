@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, TextField, Typography } from '@material-ui/core'
+import { Button, CircularProgress, Dialog, DialogContent, DialogTitle, TextField, Typography } from '@material-ui/core'
 import DialogActions from '@material-ui/core/DialogActions'
 import * as React from 'react'
 import { AccountWithBalance } from '../../../services/account/types'
@@ -14,7 +14,7 @@ export interface TransferDialogProps {
 
 export function TransferDialog(props: TransferDialogProps) {
     const { open, sourceAccount, targetAccount } = props
-    const { form } = useTransferDialog({ 
+    const { form, service } = useTransferDialog({ 
         open,
         targetAccount,
         sourceAccount,
@@ -38,16 +38,16 @@ export function TransferDialog(props: TransferDialogProps) {
             open={open}
         >
             <DialogTitle>
-                Transferência
+                Transfer
             </DialogTitle>
             <DialogContent className={'dd-transfer-dialog-content'}>
-                <Typography variant="caption">De</Typography>
+                <Typography variant="caption">From</Typography>
                 <Typography variant="h4">{sourceAccount?.name}</Typography>
 
-                <Typography variant="caption">Para</Typography>
+                <Typography variant="caption">To</Typography>
                 <Typography variant="h4">{targetAccount?.name}</Typography>
                
-                <Typography variant="caption">Saldo em conta</Typography>
+                <Typography variant="caption">Account balance</Typography>
                 <Typography variant="h4">{sourceBalance} {sourceAccount?.currency}</Typography>
 
                 <TextField
@@ -63,12 +63,21 @@ export function TransferDialog(props: TransferDialogProps) {
 
             </DialogContent>
             <DialogActions >
-                <Button onClick={form.validate} color="primary">
-                    Transferir
-                </Button>
-                <Button onClick={props.onCancel}>
-                    Cancelar
-                </Button>
+                {service.loading && 
+                    <div style={{marginBottom: 15}}>
+                        <CircularProgress size={24} />&nbsp; Finishing...
+                    </div>
+                }
+                {!service.loading && 
+                    <React.Fragment>
+                        <Button onClick={form.validate} color="primary">
+                            Transfer
+                        </Button>
+                        <Button onClick={props.onCancel}>
+                            Cancel
+                        </Button>
+                    </React.Fragment>
+                }
             </DialogActions>
         </Dialog>
     )

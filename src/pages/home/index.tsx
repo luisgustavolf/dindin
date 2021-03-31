@@ -6,6 +6,7 @@ import { useHomePage } from './hook'
 import { TransferDialog } from './transferDialog'
 
 import './styles.scss'
+import { StatementsDialog } from './statementsDialog'
 
 export function HomePage(props: RouteChildrenProps) {
     const { context, transferTarget, openDialog, backToBegin } = useHomePage({})
@@ -40,6 +41,12 @@ export function HomePage(props: RouteChildrenProps) {
                 open={openDialog}
                 onOk={() => backToBegin(true)}
                 onCancel={() => backToBegin(false)}
+            />
+
+            <StatementsDialog
+                account={{id: 1} as any}
+                open={true}
+                onClose={() => {}}
             />
         </React.Fragment>
 
