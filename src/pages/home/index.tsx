@@ -4,6 +4,7 @@ import { RouteChildrenProps } from 'react-router-dom'
 import { AccountSummaryWithTargeting } from '../../components/others/accountSummaryWithTargeting'
 import { useHomePage } from './hook'
 import './styles.scss'
+import { TransferDialog } from './transferDialog'
 
 export function HomePage(props: RouteChildrenProps) {
     const { context, targetHook } = useHomePage({})
@@ -30,7 +31,13 @@ export function HomePage(props: RouteChildrenProps) {
                 />
             )}
 
-            
+            <TransferDialog 
+                sourceAccountId={1}
+                targetAccountId={2}
+                open={true}
+                onOk={() => {}}
+                onCancel={() => {}}
+            />
         </Container>
     )
 }

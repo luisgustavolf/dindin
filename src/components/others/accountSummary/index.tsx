@@ -4,6 +4,7 @@ import { useAccountSummary } from './hook'
 
 export interface AccountSummaryProps {
     accountId: number
+    size?: 'regular' | 'small'
     children?: any
 }
 
@@ -22,6 +23,7 @@ export function AccountSummary(props:AccountSummaryProps) {
             title={name}
             balance={balance}
             currency={currency}
+            size={props.size}
             children={props.children}
         />
     )

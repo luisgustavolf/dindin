@@ -9,7 +9,7 @@ export function useTransferTarget(props:UseTransferTargetProps) {
     // Functions
 
     const isTarget = React.useCallback((accountId: number) => {
-        return !!(sourceAccountId && accountId != sourceAccountId)
+        return !!(sourceAccountId && accountId !== sourceAccountId)
     }, [sourceAccountId]) 
 
     // ---------------------------------------------
