@@ -4,8 +4,7 @@ import { useAccountSummary } from './hook'
 
 export interface AccountSummaryProps {
     accountId: number
-    onTransfer: () => void
-    onStatements: () => void
+    children?: any
 }
 
 export function AccountSummary(props:AccountSummaryProps) {
@@ -23,8 +22,7 @@ export function AccountSummary(props:AccountSummaryProps) {
             title={name}
             balance={balance}
             currency={currency}
-            onStatements={() => {}}
-            onTransfer={() => {}}
+            children={props.children}
         />
     )
 }

@@ -1,18 +1,17 @@
-import * as React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
+import * as React from 'react';
 import { EnumCurrency } from '../../../storage/stores/accounts/enumCurrency';
 
 import './styles.scss';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 export interface AccountSummaryBaseProps {
     title?: string
     balance?: number
     currency?: EnumCurrency
     loading?: boolean
-    onTransfer: () => void
-    onStatements: () => void
+    size?: 'regular' | 'small'
+    children?: any
 }
 
 export function AccountSummaryBase(props: AccountSummaryBaseProps) {
@@ -25,11 +24,13 @@ export function AccountSummaryBase(props: AccountSummaryBaseProps) {
         maximumFractionDigits: 2,
     })
 
+    const size = props.size || 'regular';
+
     // ---------------------------------------------
     // Render
 
     return (
-        <Paper className={'dd-account-summary'}>
+        <Paper className={`dd-account-summary size-${size}`}>
             {props.loading && 
                 <CircularProgress />
             }
@@ -45,8 +46,7 @@ export function AccountSummaryBase(props: AccountSummaryBaseProps) {
                         {formattedBalance}
                     </div>
                     <div className={'footer'}>
-                        <Button color="primary" onClick={props.onTransfer}>Transferir</Button>
-                        <Button onClick={props.onStatements}>Extrato</Button>
+                        {props.children}
                     </div>
                 </React.Fragment>
             }

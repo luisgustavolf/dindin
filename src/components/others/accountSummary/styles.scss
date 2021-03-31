@@ -13,7 +13,6 @@
         justify-content: center;
         
         .title {
-            font-size: 14px;
             padding: 5px 15px;
             background: #f1f1f1;
             border-radius: 4px;
@@ -23,7 +22,6 @@
 
     .balance {
         padding: 40px 20px 20px 20px;
-        font-size: 50px;
         text-align: center;
     }
 
@@ -31,6 +29,26 @@
         & > * {
             display: block;
             width: 100%;
+        }
+    }
+
+    &.size-regular {
+        .title { 
+            font-size: 14px;
+        }
+        
+        .balance {
+            font-size: 50px;
+        }
+    }
+
+    &.size-small {
+        .title { 
+            font-size: 11px;
+        }
+        
+        .balance {
+            font-size: 24px;
         }
     }
 }

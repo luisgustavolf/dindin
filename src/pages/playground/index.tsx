@@ -18,24 +18,18 @@ export function PlaygroundPage(props: RouteChildrenProps) {
                 title={'Reais'}
                 balance={0}
                 currency={EnumCurrency.BRL}
-                onStatements={() => {}}
-                onTransfer={() => {}}
             />
 
             <AccountSummaryBase 
                 title={'Reais'}
                 balance={0}
                 currency={EnumCurrency.BRL}
-                onStatements={() => {}}
-                onTransfer={() => {}}
             />
 
             <AccountSummaryBase 
                 title={'Reais'}
                 balance={0}
                 currency={EnumCurrency.BRL}
-                onStatements={() => {}}
-                onTransfer={() => {}}
             />
         </div>
     )

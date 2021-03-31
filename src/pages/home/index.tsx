@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core'
 import * as React from 'react'
 import { RouteChildrenProps } from 'react-router-dom'
-import { AccountSummary } from '../../components/others/accountSummary'
+import { AccountSummaryWithTargeting } from '../../components/others/accountSummaryWithTargeting'
 import { useHomePage } from './hook'
 import './styles.scss'
 
@@ -20,11 +20,12 @@ export function HomePage(props: RouteChildrenProps) {
             style={{height: '100vh'}} 
         >
             {(accounts || []).map((account, idx) => 
-                <AccountSummary 
+                <AccountSummaryWithTargeting 
                     key={idx} 
                     accountId={account.id!} 
-                    onStatements={() => {}}
+                    onStatement={() => {}}
                     onTransfer={() => {}}
+                    onTargetSelected={() => {}}
                 />
             )}
         </Container>
