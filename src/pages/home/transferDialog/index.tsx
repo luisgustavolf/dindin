@@ -52,7 +52,7 @@ export function TransferDialog(props: TransferDialogProps) {
 
                 <TextField
                     style={{marginTop: 20}}
-                    label="Valor à transferir"
+                    label="Transfer value"
                     value={form.values.amount}
                     onChange={(evt) => {form.setValues({ amount: parseFloat(evt.target.value) })}}
                     variant="outlined"
