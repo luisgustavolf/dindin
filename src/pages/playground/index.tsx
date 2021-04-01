@@ -1,8 +1,5 @@
-import * as React from 'react'
-import { RouteChildrenProps } from 'react-router'
-import { AccountSummaryBase } from '../../components/others/accountSummary/accountSummaryBase'
-import { EnumCurrency } from '../../storage/stores/accounts/enumCurrency'
-
+import * as React from 'react';
+import { RouteChildrenProps } from 'react-router';
 import './styles.scss';
 
 export function PlaygroundPage(props: RouteChildrenProps) {
@@ -14,23 +11,7 @@ export function PlaygroundPage(props: RouteChildrenProps) {
 
     return (
         <div className={'dd-playground'}>
-            <AccountSummaryBase 
-                title={'Reais'}
-                balance={0}
-                currency={EnumCurrency.BRL}
-            />
-
-            <AccountSummaryBase 
-                title={'Reais'}
-                balance={0}
-                currency={EnumCurrency.BRL}
-            />
-
-            <AccountSummaryBase 
-                title={'Reais'}
-                balance={0}
-                currency={EnumCurrency.BRL}
-            />
+           
         </div>
     )
 }

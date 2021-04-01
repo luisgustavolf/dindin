@@ -2,9 +2,9 @@ import * as React from 'react';
 import { AccountWithBalance } from '../../services/account/types';
 import { Account } from '../../storage/stores/accounts/account';
 
-export interface UseTransferTargetProps { }
+export interface UseTransferManagerProps { }
 
-export function useTransferTarget(props: UseTransferTargetProps) {
+export function useTransferManager(props: UseTransferManagerProps) {
     const [sourceAccount, setSourceAccount] = React.useState<AccountWithBalance>();
     const [targetAccount, setTargetAccount] = React.useState<AccountWithBalance>();
 
@@ -24,12 +24,16 @@ export function useTransferTarget(props: UseTransferTargetProps) {
     // Effects
     // ---------------------------------------------
     // Transformations
+
+    const isReadyToTransfer = !!(sourceAccount && targetAccount)
+
     // ---------------------------------------------
     // API
     
     return {
         sourceAccount, 
         targetAccount, 
+        isReadyToTransfer,
         setTargetAccount,
         setSourceAccount,
         reset,

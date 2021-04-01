@@ -6,7 +6,7 @@ export interface UseAccountsBalancesProviderProps { }
 
 export function useAccountsBalancesProvider(props: UseAccountsBalancesProviderProps) {
     const [loading, setLoading] = React.useState(false)
-    const [accounts, setAccounts] = React.useState<AccountWithBalance[]>()
+    const [accounts, setAccounts] = React.useState<AccountWithBalance[]>([])
 
     // ---------------------------------------------
     // Functions

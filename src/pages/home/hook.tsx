@@ -1,18 +1,18 @@
 import * as React from 'react'
 import { AccountsBalancesContext } from '../../contexts/accountsBalances/context'
 import { useStatementDialog } from './useStatementDialog'
-import { useTransferTarget } from './useTransferTarget'
+import { useTransferManager } from './useTransferTarget'
 
 export interface UseHomePageProps {
 }
 
 export function useHomePage(props:UseHomePageProps) {
     const context = React.useContext(AccountsBalancesContext)
-    const transferTarget = useTransferTarget({})
+    const transferManager = useTransferManager({})
     const statementDialog = useStatementDialog({})
 
     const { update } = context
-    const { reset } = transferTarget 
+    const { reset } = transferManager 
     
     // ---------------------------------------------
     // Functions
@@ -27,19 +27,13 @@ export function useHomePage(props:UseHomePageProps) {
     // Effects
     // ---------------------------------------------
     // Transformations
-
-    const openTransferDialog = !!(transferTarget.sourceAccount && transferTarget.targetAccount)
-
     // ---------------------------------------------
     // API
     
     return {
         context,
-        transferTarget,
+        transferManager,
         statementDialog,
-        transferDialog: {
-            isOpen: openTransferDialog
-        },
         backToBegin
     }
 }
