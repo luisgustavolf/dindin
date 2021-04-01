@@ -50,7 +50,7 @@ export function AccountSummary(props:AccountSummaryProps) {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button color="primary" onClick={() => props.onTransfer(props.account)}>Transfer</Button>
+                            <Button color="primary" onClick={() => props.onTransfer(props.account)}>Transfer to</Button>
                             <Button onClick={() => props.onStatement(props.account)}>Statements</Button>
                         </CardActions>
                     </React.Fragment>
