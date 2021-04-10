@@ -56,8 +56,8 @@ export function TransferDialog(props: TransferDialogProps) {
                     value={form.values.amount}
                     onChange={(evt) => {form.setValues({ amount: parseFloat(evt.target.value) })}}
                     variant="outlined"
-                    error={!!form.errors?.amount}
-                    helperText={form.errors?.amount}
+                    error={!!form.errors?.amount || !!service.errors?.amount}
+                    helperText={form.errors?.amount || service.errors?.amount}
                     fullWidth
                 />
 

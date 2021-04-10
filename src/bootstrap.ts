@@ -2,10 +2,12 @@ import { connect } from './storage/db';
 import { AccountStore } from './storage/stores/accounts';
 import { EnumCurrency } from './storage/stores/accounts/enumCurrency';
 import { StatementStore } from './storage/stores/statements';
+import { CurrencyService } from './services/currency'
 
 export async function bootstrap(success: () => void) {
     await connect()
     await verifyIfApplicationNeedsInitialData()
+    await CurrencyService.updateCurrencyExchangeIndexes()
     success();
 }
 

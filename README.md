@@ -20,29 +20,41 @@ To see more about some other materials that i´ve used to structure this initiat
 
 - Project may contain some minor issues
 
-### Prerequisites 
-- node v12.x (or higher)
+### Docker way
+
+```bash
+# build once
+docker-compose build
+
+# run it
+docker-compose up
+```
+
+### Classic way
+
+#### Prerequisites 
+- node 12.x (or higher)
 - yarn 1.22 (or higher)
 
-### Installation
+#### Installation
 
 ```bash
 yarn
 ```
 
-### Tests
+#### Tests
 
 ```bash
 yarn test
 ```
 
-### Running the project (dev purposes)
+#### Running the project (dev purposes)
 
 ```bash
 yarn run
 ```
 
-### Building the project
+#### Building the project
 
 ```bash
 yarn build

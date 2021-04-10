@@ -7,9 +7,6 @@ async function trade(props: {
     targetAccount: Account
     value: number
 }) {
-    await CurrencyService.updateCurrencyExchangeIndexes()
-    
-
     const equivalentValue = CurrencyService.calculateEquivalentValue({
         sourceCurrency: props.sourceAccount.currency,
         targetCurrency: props.targetAccount.currency,

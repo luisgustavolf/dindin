@@ -5,7 +5,7 @@ import { getBritasValue } from "./updaters/britas";
 
 async function updateCurrencyExchangeIndexes() {
     const BRI = await getBritasValue();
-        
+    
     currencyExchangeIndexes[EnumCurrency.BRL] = 1
     currencyExchangeIndexes[EnumCurrency.USD] = BRI
     currencyExchangeIndexes[EnumCurrency.BRI] = BRI
